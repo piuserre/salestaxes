@@ -9,21 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.lastminute.salestaxes.TaxContext;
+import com.lastminute.salestaxes.calculation.TaxContext;
 
 @Component
 @Scope("prototype")
 public class Receipt {
-
-	private List<Purchase> listPurchase;
-
-	private double totalTaxes;
-	private double totalPrice;
-
 	private final static Logger LOGGER = Logger.getLogger(Receipt.class.getName());
 
 	@Autowired
 	private TaxContext taxContext;
+
+	private List<Purchase> listPurchase;
+	private double totalTaxes;
+	private double totalPrice;
 
 	public Receipt() {
 		this.listPurchase = new ArrayList<>();

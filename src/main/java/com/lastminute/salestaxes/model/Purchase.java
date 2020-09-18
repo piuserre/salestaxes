@@ -1,5 +1,11 @@
 package com.lastminute.salestaxes.model;
 
+import java.util.Arrays;
+
+import com.lastminute.salestaxes.enums.BasicBooksEnum;
+import com.lastminute.salestaxes.enums.BasicFoodsEnum;
+import com.lastminute.salestaxes.enums.BasicMedicalProductsEnum;
+
 public class Purchase {
 
 	private String goodName;
@@ -41,7 +47,19 @@ public class Purchase {
 	}
 
 	public boolean isBasicSale() {
-		return basicSale;
+		if (Arrays.asList(BasicBooksEnum.values()).stream().map(enumName -> enumName.getBookName())
+				.filter(bookName -> bookName.equals(goodName)).findFirst().isPresent())
+			return true;
+
+		if (Arrays.asList(BasicFoodsEnum.values()).stream().map(enumName -> enumName.getFoodName())
+				.filter(foodName -> foodName.equals(goodName)).findFirst().isPresent())
+			return true;
+
+		if (Arrays.asList(BasicMedicalProductsEnum.values()).stream().map(enumName -> enumName.getMedicalProductName())
+				.filter(medicalProductName -> medicalProductName.equals(goodName)).findFirst().isPresent())
+			return true;
+
+		return false;
 	}
 
 	public void setBasicSale(boolean basicSale) {

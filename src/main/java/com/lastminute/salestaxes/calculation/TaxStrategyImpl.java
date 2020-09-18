@@ -1,4 +1,4 @@
-package com.lastminute.salestaxes;
+package com.lastminute.salestaxes.calculation;
 
 import org.springframework.stereotype.Service;
 

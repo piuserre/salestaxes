@@ -4,16 +4,10 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.lastminute.salestaxes.TaxContext;
 
 @Service
 public class PurchaseFactory {
-
-	@Autowired
-	private TaxContext taxContext;
 
 	private final static Logger LOGGER = Logger.getLogger(PurchaseFactory.class.getName());
 
@@ -36,7 +30,6 @@ public class PurchaseFactory {
 			purchase.setImported(imported);
 			purchase.setGoodName(matcher.group(2));
 			purchase.setPrice(Double.valueOf(matcher.group(3)));
-			purchase.setBasicSale(taxContext.checkBasicSale(purchase.getGoodName()));
 
 		} catch (Exception e) {
 			LOGGER.severe("Error during Purchase creation");

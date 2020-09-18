@@ -1,4 +1,4 @@
-package com.lastminute.salestaxes;
+package com.lastminute.salestaxes.calculation;
 
 import com.lastminute.salestaxes.model.Purchase;
 
