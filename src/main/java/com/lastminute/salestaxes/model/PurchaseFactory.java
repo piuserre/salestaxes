@@ -22,7 +22,7 @@ public class PurchaseFactory {
 		LOGGER.info("Going to create Purchase for " + purchaseString);
 
 		Purchase purchase = new Purchase();
-		
+
 		try {
 			boolean imported = purchaseString.indexOf("imported") > -1;
 			purchaseString = purchaseString.replaceAll("imported ", "");
@@ -37,7 +37,7 @@ public class PurchaseFactory {
 			purchase.setGoodName(matcher.group(2));
 			purchase.setPrice(Double.valueOf(matcher.group(3)));
 			purchase.setBasicSale(taxContext.checkBasicSale(purchase.getGoodName()));
-			
+
 		} catch (Exception e) {
 			LOGGER.severe("Error during Purchase creation");
 			throw e;

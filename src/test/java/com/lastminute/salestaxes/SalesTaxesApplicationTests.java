@@ -101,9 +101,11 @@ class SalesTaxesApplicationTests {
 
 		PurchaseFactory purchaseFactory = ctx.getBean(PurchaseFactory.class);
 
-		assertThrows(IllegalStateException.class, () -> {purchaseFactory.getPurchase(input);});
+		assertThrows(IllegalStateException.class, () -> {
+			purchaseFactory.getPurchase(input);
+		});
 	}
-	
+
 	@Test
 	public void test05_withNullInput_shouldReturnException() {
 
@@ -111,9 +113,11 @@ class SalesTaxesApplicationTests {
 
 		PurchaseFactory purchaseFactory = ctx.getBean(PurchaseFactory.class);
 
-		assertThrows(NullPointerException.class, () -> {purchaseFactory.getPurchase(input);});
+		assertThrows(NullPointerException.class, () -> {
+			purchaseFactory.getPurchase(input);
+		});
 	}
-	
+
 	@Test
 	public void test06_withNoPurchases_shouldReturnEmptyReceipt() {
 

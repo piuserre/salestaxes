@@ -19,7 +19,7 @@ public class Receipt {
 
 	private double totalTaxes;
 	private double totalPrice;
-	
+
 	private final static Logger LOGGER = Logger.getLogger(Receipt.class.getName());
 
 	@Autowired
@@ -61,16 +61,16 @@ public class Receipt {
 		StringBuffer buffer = new StringBuffer();
 
 		double[] totalTaxes = { 0 };
-		double[] totalPrices = {0};
+		double[] totalPrices = { 0 };
 
 		this.listPurchase.stream().forEach(purchase -> {
-			
+
 			double priceTaxed = taxContext.executeTaxCalculation(purchase);
 			totalTaxes[0] += priceTaxed - purchase.getPrice();
 			totalPrices[0] += priceTaxed;
 
 			buffer.append(purchase.getQuantity()).append(" ");
-			
+
 			if (purchase.isImported())
 				buffer.append("imported ");
 			buffer.append(purchase.getGoodName()).append(": ").append(String.format(Locale.US, "%.2f", priceTaxed))
@@ -78,13 +78,13 @@ public class Receipt {
 		});
 
 		buffer.append("Sales Taxes: ").append(String.format(Locale.US, "%.2f", totalTaxes[0])).append("\n")
-		.append("Total: ").append(String.format(Locale.US, "%.2f", totalPrices[0]));
-		
-		this.totalPrice=Double.valueOf(String.format(Locale.US, "%.2f", totalPrices[0]));
-		this.totalTaxes=Double.valueOf(String.format(Locale.US, "%.2f", totalTaxes[0]));
-		
-		LOGGER.info("\n--------------------------------\n"+buffer.toString()+"\n--------------------------------");
-		
+				.append("Total: ").append(String.format(Locale.US, "%.2f", totalPrices[0]));
+
+		this.totalPrice = Double.valueOf(String.format(Locale.US, "%.2f", totalPrices[0]));
+		this.totalTaxes = Double.valueOf(String.format(Locale.US, "%.2f", totalTaxes[0]));
+
+		LOGGER.info("\n--------------------------------\n" + buffer.toString() + "\n--------------------------------");
+
 		return buffer.toString();
 	}
 
